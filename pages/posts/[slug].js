@@ -10,7 +10,7 @@ export default function BlogTemplate(props) {
       <h1>{props.frontmatter.title}</h1>
       <div
         className="post-body p-5 m-auto"
-        dangerouslySetInnerHTML={{ __html: marked.parse(content) }}
+        dangerouslySetInnerHTML={{ __html: marked.parse(props.content) }}
       ></div>
     </article>
   );
