@@ -3,7 +3,7 @@ import Header from "./Header";
 
 export default function Layout({ children }) {
 
-  const prefix = "/cballevre.net";
+  const prefix = process.env.NEXT_PUBLIC_BASE_PATH || '';
 
   return (
     <>
