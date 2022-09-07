@@ -2,6 +2,9 @@ import Head from "next/head";
 import Header from "./Header";
 
 export default function Layout({ children }) {
+
+  const prefix = "/cballevre.net";
+
   return (
     <>
       <Head>
@@ -9,6 +12,7 @@ export default function Layout({ children }) {
         <meta charSet="utf-8" />
         <meta name="Description" content=""></meta>
         <title>Célestin Ballèvre</title>
+        <link rel="shortcut icon" href={prefix + '/favicon.ico'} />
       </Head>
       <main className="mx-auto max-w-2xl">
         <Header />
