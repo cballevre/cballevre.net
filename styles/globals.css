@@ -1,3 +1,49 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer base {
+  a {
+    @apply underline text-indigo-500;
+
+    &:hover {
+      @apply text-indigo-700;
+    }
+  }
+}
+
+.post-body {
+  p {
+    @apply mb-4;
+  }
+  h1, h2, h3, h4, h5, h6 {
+    @apply mt-8 mb-4 font-bold;
+  }
+  h1 {
+    @apply text-2xl;
+  }
+  h2 {
+    @apply text-xl;
+  }
+  h3 {
+    @apply text-lg;
+  }
+  h4 {
+    @apply text-base;
+  }
+  h5 {
+    @apply text-sm;
+  }
+  h6 {
+    @apply text-xs;
+  }
+  ul, ol {
+    @apply list-inside mb-4;
+  }
+  ul {
+    @apply list-disc;
+  }
+  ol {
+    @apply list-decimal;
+  }
+}

@@ -2,30 +2,37 @@ import fs from "fs";
 import path from "path";
 import matter from "gray-matter";
 
-export default function Home({ posts }) {
+export default function Home({ posts, totalPosts }) {
   return (
     <>
-      <div class="mx-auto">
-        <p class="font-bold mb-4 mt-5">Hey 🤘</p>
-        <p class="mb-3">Je suis un développeur fullstack spécialisé en JavaScript et ses principaux frameworks Vue, React. En 4 ans d'expérience, j'ai aussi travaillé avec Python, Laravel et même Flutter.</p>
-        <p class="mb-3">Avant de plonger dans la technique, j'étudiais l'expérience utilisateur et le design. Depuis, je cherche à créer un pont entre ces deux mondes.</p>
-        <p class="mb-8">Je suis particulièrement sensible au sujet de l'accessibilité, de la cartographie, et du numérique responsable pour n'en faire qu'une courte liste. </p>
+      <div>
+        <p className="font-bold mb-4">Hey 🤘</p>
+        <p className="mb-3">Je suis un développeur fullstack spécialisé en JavaScript et ses principaux frameworks Vue, React. En 4 ans d'expérience, j'ai aussi travaillé avec Python, Laravel et même Flutter.</p>
+        <p className="mb-3">Avant de plonger dans la technique, j'étudiais l'expérience utilisateur et le design. Depuis, je cherche à créer un pont entre ces deux mondes.</p>
+        <p className="mb-8">Je suis particulièrement sensible au sujet de l'accessibilité, de la cartographie, et du numérique responsable pour n'en faire qu'une courte liste. </p>
       </div>
-      <h2 class="mb-4 font-bold">Dès fois j'écris</h2>
-      <ul class="mb-8">
+      <div className="mb-4 inline-flex items-baseline">
+      <h2 className="font-bold">Dès fois j'écris</h2>
+      { totalPosts > 10 && <a className="ml-2" href="/posts">
+        Tout afficher ({totalPosts})
+      </a>}
+      </div>
+      <ul className="mb-8">
         {posts.map((post) => {
+          const createdAt = new Date(post.createdAt) 
           return (
-            <li>
-              <a href={post.slug}>{post.title}</a>
+            <li className="flex items-baseline" key={post.slug}>
+              <a href={post.slug}>{post.title} </a>
+              <p className="ml-2 text-sm">{createdAt.toLocaleDateString('fr-FR')}</p>
             </li>
           );
         })}
       </ul>
-      <h2 class="mb-4 font-bold">Autre part</h2>
-      <ul class="mb-8">
-        <li>Github @cballevre</li>
-        <li>Linkedin @cballevre</li>
-        <li>Email send me an email</li>
+      <h2 className="mb-4 font-bold">Autre part</h2>
+      <ul className="mb-8">
+        <li>Github <a href="https://github.com/cballevre">@cballevre</a></li>
+        <li>Linkedin <a href="https://www.linkedin.com/in/cballevre/">@cballevre</a></li>
+        <li>Email <a href="mailto:celestin.ballevre@protonmail.com">envoie-moi un email</a></li>
       </ul>
     </>
   );
@@ -48,12 +55,14 @@ export async function getStaticProps() {
         ...frontmatter,
       };
     })
-    .filter((post) => post.draft === false)
-    .slice(0, 10);
+    .filter((post) => post.draft === false);
+
+  const totalPosts = posts.length;
 
   return {
     props: {
-      posts,
+      posts: posts.slice(posts.length-10, posts.length).reverse(),
+      totalPosts
     },
   };
 }

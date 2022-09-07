@@ -1,8 +1,31 @@
 ---
 title: "Make my own blog"
-draft: false
+draft: true
+createdAt: "2022-07-24"
+updatedAt: "2022-09-07"
 ---
 
-## Un peu de content pour vérifier si cela fonctionne
+Philosophie :
+- Se concentrer sur le contenu 
 
-J'aurais pu mettre un peu de lorem ipsum mais je me suis dit que ça ferait trop bull shit
+Cahier des charges de mon blog : 
+- Techno : NextJS, Typescript, TailwindCSS, Markdown
+
+Structure :
+- Homepage 
+- Blog
+	- {slug} --> page de blog 
+
+### Nextjs to github pages 
+
+Expliquer en général github actions 
+
+.nojekills pour que github qu'il n'ignore pas _next 
+
+penser au variable d'environnement pour le routeur :
+- basePath
+
+et pour les image :
+- assetPrefix
+
+Pour les variables d'environnement, il suffit d'utiliser NEXT_PUBLIC_ comme cela on les retrouve dans process.env automatiquement

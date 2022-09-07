@@ -2,17 +2,32 @@ import fs from "fs";
 import path from "path";
 import matter from "gray-matter";
 import { marked } from "marked";
+import Head from "next/head";
 
 export default function BlogTemplate(props) {
-  // Render data from `getStaticProps`
+  
+  const createdAt = new Date(props.frontmatter.createdAt) 
+  const updatedAt = new Date(props.frontmatter.updatedAt)
+
   return (
-    <article>
-      <h1>{props.frontmatter.title}</h1>
-      <div
-        className="post-body p-5 m-auto"
-        dangerouslySetInnerHTML={{ __html: marked.parse(props.content) }}
-      ></div>
-    </article>
+    <>
+      <Head>
+        <title>{props.frontmatter.title + " | Célestin Ballèvre"}</title>
+      </Head>
+      <div class="mb-4">← <a className="" href="/posts">Retour aux articles</a></div>
+      <article className="mb-8">
+        <h1 className="text-2xl font-bold mb-6">{props.frontmatter.title}</h1>
+        <div className="mb-4 p-4 bg-slate-200">
+          <p className="mb-1">📆 Publication initiale : { createdAt.toLocaleDateString('fr-FR') }</p>
+          { !!props.frontmatter.updatedAt && <p>✍ Dernière mise à jour : { updatedAt.toLocaleDateString('fr-FR') }</p> }
+        </div>
+        <div
+          className="post-body"
+          dangerouslySetInnerHTML={{ __html: marked.parse(props.content) }}
+        />
+      </article>
+    </>
+   
   );
 }
 
