@@ -2,7 +2,7 @@ import Head from "next/head";
 import fs from "fs";
 import path from "path";
 import matter from "gray-matter";
-
+import BackButton from "../../components/BackButton";
 
 export default function Blog({ posts, totalPosts}) {
   return (
@@ -11,7 +11,7 @@ export default function Blog({ posts, totalPosts}) {
         <title>Articles | Célestin Ballèvre</title>
       </Head>
       <div>
-        <div className="mb-4">← <a className="" href="/">Retour à l'accueil</a></div>
+        <BackButton to="/" label="Retour à l'accueil" />
         <h1 className="text-2xl font-bold mb-8">Articles ({totalPosts})</h1>
         <h2 class="font-bold mb-4">2022</h2>
         {posts.map((post) => {

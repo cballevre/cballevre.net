@@ -17,6 +17,7 @@ export default function Home({ posts, totalPosts }) {
         Tout afficher ({totalPosts})
       </a>}
       </div>
+      { totalPosts == 0 && <p>Du moins, ça devrait arriver sous peu...</p> }
       <ul className="mb-8">
         {posts.map((post) => {
           const createdAt = new Date(post.createdAt) 

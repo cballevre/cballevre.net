@@ -3,6 +3,7 @@ import path from "path";
 import matter from "gray-matter";
 import { marked } from "marked";
 import Head from "next/head";
+import BackButton from "../../components/BackButton";
 
 export default function BlogTemplate(props) {
   
@@ -14,7 +15,7 @@ export default function BlogTemplate(props) {
       <Head>
         <title>{props.frontmatter.title + " | Célestin Ballèvre"}</title>
       </Head>
-      <div class="mb-4">← <a className="" href="/posts">Retour aux articles</a></div>
+      <BackButton to="/posts" label="Retour aux articles" />
       <article className="mb-8">
         <h1 className="text-2xl font-bold mb-6">{props.frontmatter.title}</h1>
         <div className="mb-4 p-4 bg-slate-200">

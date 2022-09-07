@@ -14,7 +14,7 @@ export default function Layout({ children }) {
         <title>Célestin Ballèvre</title>
         <link rel="shortcut icon" href={prefix + '/favicon.ico'} />
       </Head>
-      <main className="mx-auto max-w-2xl">
+      <main className="mx-auto max-w-2xl p-8 md:px-0">
         <Header />
         <div className="content">{children}</div>
       </main>
