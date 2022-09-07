@@ -19,17 +19,16 @@ jobs:
 
     steps:
       - uses: actions/checkout@v3
-      - name: Use Node.js ${{ matrix.node-version }}
+      - name: Use Node.js ${{ matrix.node-version }} ⚙️
         uses: actions/setup-node@v3
         with:
           node-version: ${{ matrix.node-version }}
-          cache: "npm"
-      - name: Install packages
-        run: npm ci
+      - name: Install dependencies 📦
+        run: yarn install --frozen-lockfile
       - name: Build project
-        run: npm run build
+        run: yarn build
       - name: Export static files
-        run: npm run export
+        run: yarn export
       - name: Add .nojekyll file
         run: touch ./out/.nojekyll
       - name: Deploy 🚀
