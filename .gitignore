@@ -12,6 +12,10 @@
 !.yarn/sdks
 !.yarn/versions
 
+# astro
+dist/
+.astro/
+
 # testing
 /coverage
 
