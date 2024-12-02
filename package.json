@@ -9,6 +9,7 @@
     "start": "next start"
   },
   "dependencies": {
+    "astro": "^4.16.16",
     "gray-matter": "^4.0.3",
     "marked": "^4.0.18",
     "next": "12.2.3",
