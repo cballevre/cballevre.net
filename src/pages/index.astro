@@ -14,8 +14,12 @@ const totalPosts = posts.length
     <p class="mb-8">Je suis particulièrement sensible au sujet de l'accessibilité, de la cartographie, et du numérique responsable pour n'en faire qu'une courte liste. </p>
   </div>
   <div class="mb-4 inline-flex items-baseline">
-  <h2 class="font-bold">Dès fois j'écris</h2>
-
+    <h2 class="font-bold">Dès fois j'écris</h2>
+    { totalPosts > 10 && <a class="ml-2" href="/posts">
+      Tout afficher ({totalPosts})
+    </a>}
+  </div>
+  { totalPosts == 0 && <p>Du moins, ça devrait arriver sous peu...</p> }
   <ul class="mb-8">
     {posts.map((post) => {
       const createdAt = new Date(post.frontmatter.createdAt) 
@@ -27,11 +31,6 @@ const totalPosts = posts.length
       );
     })}
   </ul>
-  { totalPosts > 10 && <a class="ml-2" href="/posts">
-    Tout afficher ({totalPosts})
-  </a>}
-  { totalPosts == 0 && <p>Du moins, ça devrait arriver sous peu...</p> }
-  </div>
   <h2 class="mb-4 font-bold">Autre part</h2>
   <ul class="mb-8">
     <li>Github <a href="https://github.com/cballevre">@cballevre</a></li>
