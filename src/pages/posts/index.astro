@@ -1,0 +1,26 @@
+---
+import BackButton from "../../components/BackButton.jsx";
+import BaseLayout from "../../layouts/Base.astro"
+
+const posts = Object.values(await import.meta.glob('../content/blog/*.md', { eager: true }))
+  .filter((post) => post.frontmatter.draft === false)
+const displayedPosts = posts.slice(posts.length-10, posts.length).reverse();
+const totalPosts = posts.length
+---
+
+<BaseLayout title="Articles">
+  <BackButton to="/" label="Retour à l'accueil" />
+  <h1 class="text-2xl font-bold mb-8">Articles ({totalPosts})</h1>
+  <h2 class="font-bold mb-4">2022</h2>
+  {displayedPosts.map((post) => {
+    const createdAt = new Date(post.frontmatter.createdAt) 
+    return (
+      <li class="flex items-baseline">
+        <a href={post.url}>{post.frontmatter.title} </a>
+        <p class="ml-2 text-sm">{createdAt.toLocaleDateString('fr-FR')}</p>
+      </li>
+    );
+  })}
+</BaseLayout>
+
+  
