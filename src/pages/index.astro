@@ -1,8 +1,8 @@
 ---
-import BaseLayout from '../layouts/Base.astro'
+import { getCollection } from 'astro:content';
+import BaseLayout from '../layouts/Base.astro';
 
-const posts = Object.values(await import.meta.glob('../content/blog/*.md', { eager: true }))
-  .filter((post) => post.frontmatter.draft === false);
+const posts = await getCollection('blog', ({ data }) => data.draft !== true);
 const totalPosts = posts.length
 ---
 
@@ -21,15 +21,12 @@ const totalPosts = posts.length
   </div>
   { totalPosts == 0 && <p>Du moins, ça devrait arriver sous peu...</p> }
   <ul class="mb-8">
-    {posts.map((post) => {
-      const createdAt = new Date(post.frontmatter.createdAt) 
-      return (
+    {posts.map((post) =>  (
         <li class="flex items-baseline">
-          <a href={post.url}>{post.frontmatter.title} </a>
-          <p class="ml-2 text-sm">{createdAt.toLocaleDateString('fr-FR')}</p>
+          <a href={`/posts/${post.slug}`}>{post.data.title} </a>
+          <p class="ml-2 text-sm">{post.data.createdAt.toLocaleDateString('fr-FR')}</p>
         </li>
-      );
-    })}
+      ))}
   </ul>
   <h2 class="mb-4 font-bold">Autre part</h2>
   <ul class="mb-8">
