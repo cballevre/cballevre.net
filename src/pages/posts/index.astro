@@ -1,10 +1,9 @@
 ---
+import { getCollection } from 'astro:content';
 import BackButton from "../../components/BackButton.jsx";
 import BaseLayout from "../../layouts/Base.astro"
 
-const posts = Object.values(await import.meta.glob('../content/blog/*.md', { eager: true }))
-  .filter((post) => post.frontmatter.draft === false)
-const displayedPosts = posts.slice(posts.length-10, posts.length).reverse();
+const posts = await getCollection('blog', ({ data }) => data.draft !== true);
 const totalPosts = posts.length
 ---
 
@@ -12,15 +11,12 @@ const totalPosts = posts.length
   <BackButton to="/" label="Retour à l'accueil" />
   <h1 class="text-2xl font-bold mb-8">Articles ({totalPosts})</h1>
   <h2 class="font-bold mb-4">2022</h2>
-  {displayedPosts.map((post) => {
-    const createdAt = new Date(post.frontmatter.createdAt) 
-    return (
+  {posts.map((post) =>  (
       <li class="flex items-baseline">
-        <a href={post.url}>{post.frontmatter.title} </a>
-        <p class="ml-2 text-sm">{createdAt.toLocaleDateString('fr-FR')}</p>
+        <a href={`/posts/${post.slug}`}>{post.data.title} </a>
+        <p class="ml-2 text-sm">{post.data.createdAt.toLocaleDateString('fr-FR')}</p>
       </li>
-    );
-  })}
+    ))}
 </BaseLayout>
 
   
