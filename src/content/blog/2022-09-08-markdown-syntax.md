@@ -1,6 +1,6 @@
 ---
 title: "Markdown Syntax Guide"
-createdAt: "2022-09-08"
+createdAt: 2022-09-08
 draft: true
 ---
 

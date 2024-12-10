@@ -1,0 +1,32 @@
+---
+import { getCollection, render } from 'astro:content';
+import BackButton from "../../components/BackButton.jsx";
+import BaseLayout from "../../layouts/Base.astro"
+
+export async function getStaticPaths() {
+  const posts = await getCollection('blog', ({ data }) => {
+    return data.draft !== true;
+  });
+  
+  return posts.map(post => ({
+    params: { slug: post.slug },
+    props: { post },
+  }));
+}
+
+const { post } = Astro.props;
+const { Content } = await render(post);
+
+---
+
+<BaseLayout title={post.data.title}>
+  <BackButton to="/posts" label="Retour aux articles" />
+  <article class="mb-8">
+    <h1 class="text-2xl font-bold mb-6">{post.data.title}</h1>
+    <div class="mb-4 p-4 bg-slate-200">
+      <p class="mb-1">📆 Publication initiale : { post.data.createdAt.toLocaleDateString('fr-FR') }</p>
+      { !!post.data.updatedAt && <p>✍ Dernière mise à jour : { post.data.updatedAt.toLocaleDateString('fr-FR') }</p> }
+    </div>
+    <Content />
+  </article>
+</BaseLayout>
