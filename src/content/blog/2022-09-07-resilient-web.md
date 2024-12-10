@@ -1,7 +1,7 @@
 ---
 title: "Resilient web"
 draft: false
-createdAt: "2022-09-07"
+createdAt: 2022-09-07
 ---
 
 Je dois d'abord définir ce qu'est un meilleur internet pour moi.

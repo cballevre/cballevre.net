@@ -1,8 +1,8 @@
 ---
 title: "Make my own blog"
 draft: true
-createdAt: "2022-07-24"
-updatedAt: "2022-09-07"
+createdAt: 2022-07-24
+updatedAt: 2022-09-07
 ---
 
 Philosophie :
