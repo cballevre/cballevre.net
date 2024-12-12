@@ -25,6 +25,8 @@ const { Content } = await render(post);
       <p class="mb-1">📆 Publication initiale : { post.data.createdAt.toLocaleDateString('fr-FR') }</p>
       { !!post.data.updatedAt && <p>✍ Dernière mise à jour : { post.data.updatedAt.toLocaleDateString('fr-FR') }</p> }
     </div>
-    <Content />
+    <div class="post-body">
+      <Content />
+    </div>
   </article>
 </BaseLayout>
