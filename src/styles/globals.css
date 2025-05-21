@@ -16,7 +16,12 @@
   p {
     @apply mb-4;
   }
-  h1, h2, h3, h4, h5, h6 {
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
     @apply mt-8 mb-4 font-bold;
   }
   h1 {
@@ -37,7 +42,8 @@
   h6 {
     @apply text-xs;
   }
-  ul, ol {
+  ul,
+  ol {
     @apply list-inside mb-4;
   }
   ul {

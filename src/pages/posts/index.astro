@@ -1,10 +1,10 @@
 ---
 import { getCollection } from 'astro:content';
-import BackButton from "../../components/BackButton.jsx";
-import BaseLayout from "../../layouts/Base.astro"
+import BackButton from '../../components/BackButton.jsx';
+import BaseLayout from '../../layouts/Base.astro';
 
 const posts = await getCollection('blog', ({ data }) => data.draft !== true);
-const totalPosts = posts.length
+const totalPosts = posts.length;
 ---
 
 <BaseLayout title="Articles">
@@ -18,5 +18,3 @@ const totalPosts = posts.length
       </li>
     ))}
 </BaseLayout>
-
-  

@@ -3,7 +3,7 @@ import { getCollection } from 'astro:content';
 import BaseLayout from '../layouts/Base.astro';
 
 const posts = await getCollection('blog', ({ data }) => data.draft !== true);
-const totalPosts = posts.length
+const totalPosts = posts.length;
 ---
 
 <BaseLayout>
