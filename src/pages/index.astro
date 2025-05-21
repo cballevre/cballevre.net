@@ -4,6 +4,10 @@ import BaseLayout from '../layouts/Base.astro';
 
 const posts = await getCollection('blog', ({ data }) => data.draft !== true);
 const totalPosts = posts.length;
+console.log(posts)
+
+const projects = await getCollection('projects');
+console.log(projects)
 ---
 
 <BaseLayout>
@@ -13,6 +17,14 @@ const totalPosts = posts.length;
     <p class="mb-3">Avant de plonger dans la technique, j'étudiais l'expérience utilisateur et le design. Depuis, je cherche à créer un pont entre ces deux mondes.</p>
     <p class="mb-8">Je suis particulièrement sensible au sujet de l'accessibilité, de la cartographie, et du numérique responsable pour n'en faire qu'une courte liste. </p>
   </div>
+  <section class="mb-8">
+      <h2 class="font-bold">Projets</h2>
+      <ul class="grid grid-cols-6 gap-6 mt-4">
+        {projects.map((project, idx) =>  (
+          <li class={idx % 3 == 0 ? "min-h-40 bg-sky-300 rounded-3xl col-span-4 p-5" : "min-h-60 bg-sky-300 rounded-3xl p-5 col-span-2"}>{project.data.name}</li>
+        ))}
+      </ul>
+  </section>
   <div class="mb-4 inline-flex items-baseline">
     <h2 class="font-bold">Dès fois j'écris</h2>
     { totalPosts > 10 && <a class="ml-2" href="/posts">
