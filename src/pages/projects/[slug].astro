@@ -1,0 +1,29 @@
+---
+import { getCollection, render } from 'astro:content';
+import BackButton from '../../components/BackButton.jsx';
+import BaseLayout from '../../layouts/Base.astro';
+
+export async function getStaticPaths() {
+  const projects = await getCollection('projects');
+
+  console.log(projects);
+
+  return projects.map((project) => ({
+    params: { slug: project.slug },
+    props: { project },
+  }));
+}
+
+const { project } = Astro.props;
+const { Content } = await render(project);
+---
+
+<BaseLayout title={project.data.title}>
+  <BackButton to="/" label="Retour à l'accueil" />
+  <article class="mb-8">
+    <h1 class="text-2xl font-bold mb-6">{project.data.title}</h1>
+    <div class="post-body">
+      <Content />
+    </div>
+  </article>
+</BaseLayout>

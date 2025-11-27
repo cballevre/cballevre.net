@@ -4,10 +4,10 @@ import BaseLayout from '../layouts/Base.astro';
 
 const posts = await getCollection('blog', ({ data }) => data.draft !== true);
 const totalPosts = posts.length;
-console.log(posts)
+console.log(posts);
 
 const projects = await getCollection('projects');
-console.log(projects)
+console.log(projects);
 ---
 
 <BaseLayout>
@@ -19,11 +19,17 @@ console.log(projects)
   </div>
   <section class="mb-8">
       <h2 class="font-bold">Projets</h2>
-      <ul class="grid grid-cols-6 gap-6 mt-4">
+      <div class="grid grid-cols-6 gap-6 mt-4">
         {projects.map((project, idx) =>  (
-          <li class={idx % 3 == 0 ? "min-h-40 bg-sky-300 rounded-3xl col-span-4 p-5" : "min-h-60 bg-sky-300 rounded-3xl p-5 col-span-2"}>{project.data.name}</li>
+          <div class={idx % 3 == 0 ? "min-h-60 bg-sky-300 rounded-3xl col-span-4 overflow-hidden	" : "min-h-60 bg-sky-300 rounded-3xl col-span-2 overflow-hidden"}>
+            <a class="block h-full flex flex-col bg-gradient-to-b from-slate-900/80 via-10 via-slate-900/0 p-5 hover:bg-slate-700 text-white hover:text-white no-underline	" href={`/projects/${project.slug}`}>
+              <h3 class="text-lg font-bold mb-2">{project.data.title}</h3>
+              <p class="text-sm mt-auto opacity-0 hover:opacity-100 duration-300 ">{project.data.description}</p>
+            </a>
+          </div>
+          // linear-gradient(to top, #25241D00 70%, #25241D80 100%)
         ))}
-      </ul>
+      </div>
   </section>
   <div class="mb-4 inline-flex items-baseline">
     <h2 class="font-bold">Dès fois j'écris</h2>
